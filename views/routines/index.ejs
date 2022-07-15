@@ -1,0 +1,32 @@
+<%- include("../partials/header"); %>
+
+<div class="container">
+   <header class="jumbotron">
+      <div class="container">
+         <h1>Felix's Collection of Yoga Routines</h1>
+         <p>I put these together cause I don't want to have to watch a video, enjoy!</p>
+         <p>
+            <a class="btn btn-primary btn-lg" href="/routines/new">Add a new routine!</a>
+         </p>
+      </div>
+   </header>
+   
+   <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+      <% routines.forEach(function(routine){ %>
+         <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+               <img src="<%= routine.image %>" class="img-fluid">
+               <div class="caption">
+                  <h4><%= routine.name %></h4>
+                  <h4><%= routine.author %></h4>
+               </div>
+               <p>
+                  <a href="/routines/<%= routine._id %>" class="btn btn-primary">More Info</a>
+               </p>
+            </div>
+         </div>
+      <% }); %>
+   </div>
+</div>
+
+<%- include('../partials/footer'); %>

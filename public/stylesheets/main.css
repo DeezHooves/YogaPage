@@ -1,0 +1,20 @@
+body {
+    background-color: #898989
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.stepImage {
+    width: 45%;
+    /* height: 100%; */
+}
