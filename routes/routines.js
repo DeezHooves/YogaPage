@@ -52,6 +52,31 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// EDIT ROUTINE ROUTE
+router.get("/:id/edit", (req, res) => {
+    Routine.findById(req.params.id, (err, foundRoutine) => {
+        if(err){
+            res.redirect("/routines");
+        } else {
+            res.render("routines/edit", {routine: foundRoutine});
+        }
+    });
+});
+
+// UPDATE ROUTINE ROUTE
+router.put("/:id/", (req, res) => {
+    // find and update the correct routine
+    Routine.findByIdAndUpdate(req.params.id, req.body.routine, (err, updatedRoutine) => {
+        if(err){
+            res.redirect("/routines");
+        } else {
+            res.redirect("/routines/" + req.params.id);
+        }
+    });
+    // redirect somewhere(show page)
+    
+});
+
 //middleware
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
