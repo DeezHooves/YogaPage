@@ -19,7 +19,9 @@
         <div class="well">
             <div class="text-right">
             </div>
-            <a class="btn btn-success pull-right" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
+            <% if(currentUser){ %> 
+                <a class="btn btn-success pull-right" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
+            <% } %>
             <% routine.steps.forEach((step) => { %>
                 <div class="row">
                     <div class="thumbnail">
@@ -32,10 +34,15 @@
                             </p>                            
                         </div>
                     </div>
-                </div>                
+                </div>              
+                <% if(currentUser){ %>  
+                    <a class="btn btn-danger pull-right" href="/routines/<%= routine._id %>/steps/delete">Delete This Step</a>
+                <% } %>
                 <hr>
             <% }); %>
-            <a class="btn btn-success pull-right" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
+            <% if(currentUser){ %> 
+                <a class="btn btn-success pull-right" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
+            <% } %>
         </div>
     </div>
 </div>

@@ -1,5 +1,10 @@
 body {
-    background-color: #898989
+    background-color: #0d1117;
+    color: #d9cfc9;
+}
+
+.jumbotron {
+    background-color: #30363d;
 }
 
 .thumbnail img {
@@ -11,6 +16,8 @@ body {
 }
 
 .thumbnail {
+    background-color: #30363d;
+    color: #d9cfc9;
     padding: 0;
 }
 

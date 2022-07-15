@@ -1,3 +1,4 @@
+const { application } = require("express");
 const express = require("express");
 const router = express.Router({mergeParams: true});
 
@@ -41,6 +42,13 @@ router.post("/", isLoggedIn, (req, res) => {
             });
         }
     });
+});
+
+// delete a step
+router.get("/delete", isLoggedIn, (req, res) => {
+    console.log("Delete stuff");
+
+    // db.yoga.updateOne({},{"$unset":{"steps.*step id*"}}) //mongosh code to remove a comment
 });
 
 
