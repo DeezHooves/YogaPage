@@ -12,3 +12,7 @@ Place where I have Yoga routines
         change step image to text sizes
         give the page better colors
         do SOMETHING to landing
+        fix header
+        fix login page
+        fix sign up page
+        

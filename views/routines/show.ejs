@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row thumbnail">
         <div class="col-md-5">
-            <img class="img-responsive" src="<%- routine.image %>">
+            <img class="img-responsive" src="<%= routine.image %>">
             <!-- <p class="lead">Image</p> -->
         </div>
         <div class="col-md-7">
@@ -20,7 +20,7 @@
             <div class="text-right">
             </div>
             <a class="btn btn-success pull-right" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
-            <% routine.steps.forEach(function(step){ %>
+            <% routine.steps.forEach((step) => { %>
                 <div class="row">
                     <div class="thumbnail">
                         <div class="col-md-4 caption-full">

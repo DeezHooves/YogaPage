@@ -18,3 +18,12 @@ body {
     width: 45%;
     /* height: 100%; */
 }
+
+#eachRoutine { 
+    display:flex;
+    flex-wrap: wrap;
+}
+
+/* #eachRoutine .thumbnail {
+    
+} */

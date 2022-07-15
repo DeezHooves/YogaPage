@@ -11,18 +11,21 @@
       </div>
    </header>
    
-   <div class="row text-center" style="display:flex; flex-wrap: wrap;">
-      <% routines.forEach(function(routine){ %>
+   <div class="row text-center" id="eachRoutine">
+      <% routines.forEach((routine) => { %>
          <div class="col-md-3 col-sm-6">
             <div class="thumbnail">
                <img src="<%= routine.image %>" class="img-fluid">
                <div class="caption">
-                  <h4><%= routine.name %></h4>
-                  <h4><%= routine.author %></h4>
+                  <h6 class="pull-left"><%= routine.author %></h6>
+                  <hr>
+                  <h4 class="pull-left"><strong><%= routine.name %></strong></h4>
                </div>
-               <p>
-                  <a href="/routines/<%= routine._id %>" class="btn btn-primary">More Info</a>
-               </p>
+               <div class="row">
+                  <p class="justify-content-end align-items-end">
+                     <a href="/routines/<%= routine._id %>" class="btn btn-primary">More Info</a>
+                  </p>
+               </div>
             </div>
          </div>
       <% }); %>
