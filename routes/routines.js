@@ -33,7 +33,7 @@ router.post("/", isLoggedIn, (req, res) => {
     });
 });
 
-// NEW - shows more info about one routine
+// NEW - shows form to create new routine
 router.get("/new", isLoggedIn, (req, res) => {
     res.render("routines/new");
 });
@@ -70,11 +70,21 @@ router.put("/:id/", (req, res) => {
         if(err){
             res.redirect("/routines");
         } else {
+            // redirect somewhere(show page)
             res.redirect("/routines/" + req.params.id);
         }
     });
-    // redirect somewhere(show page)
-    
+});
+
+// DESTROY ROUTINE ROUTE
+router.delete("/:id", isLoggedIn, (req, res) => {
+    Routine.findByIdAndRemove(req.params.id, (err) => {
+        if(err){
+            res.redirect("/routines");
+        } else {
+            res.redirect("/routines");
+        }
+    })
 });
 
 //middleware

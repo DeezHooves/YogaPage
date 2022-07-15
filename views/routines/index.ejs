@@ -5,13 +5,15 @@
       <div class="container">
          <h1>Felix's Collection of Yoga Routines</h1>
          <p>I put these together cause I don't want to have to watch a video, enjoy!</p>
-         <p>
-            <a class="btn btn-primary btn-lg" href="/routines/new">Add a new routine!</a>
-         </p>
+         <% if(currentUser){ %>
+            <p>
+               <a class="btn btn-primary btn-lg" href="/routines/new">Add a new routine!</a>
+            </p>
+         <% } %>
       </div>
    </header>
    
-   <div class="row text-center" id="eachRoutine">
+   <div class="row text-center" id="each-routine">
       <% routines.forEach((routine) => { %>
          <div class="col-md-3 col-sm-6">
             <div class="thumbnail">

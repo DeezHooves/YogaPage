@@ -13,8 +13,10 @@
                     <h4><%= routine.name %></h4>
                 </div>
                 <% if(currentUser){ %> 
-                    <a class="btn btn-warning pull-right" href="/routines/<%= routine._id %>/edit">Edit titlecard</a>
-                    <a class="btn btn-danger pull-left" href="/routines/<%= routine._id %>/*">Delete Entire Routine</a>
+                    <a class="btn btn-warning pull-right" href="/routines/<%= routine._id %>/edit">Edit Titlecard</a>
+                    <form action="/routines/<%= routine._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-xs btn-danger pull-left" href="/routines/<%= routine._id %>/*">Delete Entire Routine</button>
+                    </form>
                 <% } %>
             </div>
         </div>
@@ -38,10 +40,10 @@
                             </p>                            
                         </div>
                     </div>
+                    <% if(currentUser){ %>  
+                        <a class="btn btn-danger pull-right" href="/routines/<%= routine._id %>/steps/delete">Delete This Step</a>
+                    <% } %>
                 </div>              
-                <% if(currentUser){ %>  
-                    <a class="btn btn-danger pull-right" href="/routines/<%= routine._id %>/steps/delete">Delete This Step</a>
-                <% } %>
                 <hr>
             <% }); %>
             <% if(currentUser){ %> 
