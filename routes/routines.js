@@ -1,4 +1,5 @@
 const express = require("express");
+const routine = require("../models/routine");
 const router = express.Router();
 const Routine = require("../models/routine")
 
@@ -18,17 +19,27 @@ router.get("/", (req, res) => {
 // CREATE - add new routine to DB
 router.post("/", isLoggedIn, (req, res) => {
     // get data from form and add to routines array
-    let name = req.body.name,
-        image = req.body.image,
-        author = req.body.author,
-        newRoutine = {name: name, image: image, author:author};
+let postAuthor = {
+        id: req.user._id,
+        username: req.user.username
+    },
+    name = req.body.name,
+    image = req.body.image,
+    author = req.body.author,
+    style = req.body.style,
+    level = req.body.level,
+    length = req.body.length,
+    newRoutine = {postAuthor:postAuthor, name: name, image: image, author:author, style:style, level:level, length:length};
+    console.log(req.user);
+    console.log(postAuthor);
+    console.log(newRoutine);
     // Create a new routine and save to DB
     Routine.create(newRoutine, (err, newlyCreated) =>{
         if(err){
             console.log(err);
         } else {
             // redirect back to routines page.
-            res.redirect("/");
+            res.redirect("/routines");
         }
     });
 });
@@ -53,13 +64,9 @@ router.get("/:id", (req, res) => {
 });
 
 // EDIT ROUTINE ROUTE
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", checkRoutineOwnership, (req, res) => {
     Routine.findById(req.params.id, (err, foundRoutine) => {
-        if(err){
-            res.redirect("/routines");
-        } else {
-            res.render("routines/edit", {routine: foundRoutine});
-        }
+        res.render("routines/edit", {routine: foundRoutine});            
     });
 });
 
@@ -93,6 +100,25 @@ function isLoggedIn(req, res, next){
         return next();
     }
     res.redirect('/login');
+}
+
+function checkRoutineOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        Routine.findById(req.params.id, (err, foundRoutine) => {
+            if(err){
+                res.redirect("back");
+            } else {
+                // does user own the routine
+                if(foundRoutine.postAuthor.id.equals(req.user._id)){
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
 }
 
 module.exports = router;
