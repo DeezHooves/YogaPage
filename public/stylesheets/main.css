@@ -31,3 +31,23 @@ body {
     flex-wrap: wrap;
 } */
 
+.navbar {
+    background-color: #30363d;
+}
+
+.well {
+    background-color: #30363d;
+    color: #d9cfc9;
+}
+
+h6 {
+    color: #d9cfc9;
+}
+
+h4 {
+    color: #d9cfc9;
+}
+
+.navbar-default {
+    color: #d9cfc9;
+}
