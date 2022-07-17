@@ -1,7 +1,7 @@
 const express = require("express");
-const routine = require("../models/routine");
+const Routine = require("../models/routine");
 const router = express.Router();
-const Routine = require("../models/routine")
+const middleware = require("../middleware");
 
 
 // INDEX - show all routines
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 });
 
 // CREATE - add new routine to DB
-router.post("/", isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, (req, res) => {
     // get data from form and add to routines array
 let poster = {
         id: req.user._id,
@@ -42,7 +42,7 @@ let poster = {
 });
 
 // NEW - shows form to create new routine
-router.get("/new", isLoggedIn, (req, res) => {
+router.get("/new", middleware.isLoggedIn, (req, res) => {
     res.render("routines/new");
 });
 
@@ -61,14 +61,14 @@ router.get("/:id", (req, res) => {
 });
 
 // EDIT ROUTINE ROUTE
-router.get("/:id/edit", checkRoutineOwnership, (req, res) => {
+router.get("/:id/edit", middleware.checkRoutineOwnership, (req, res) => {
     Routine.findById(req.params.id, (err, foundRoutine) => {
         res.render("routines/edit", {routine: foundRoutine});            
     });
 });
 
 // UPDATE ROUTINE ROUTE
-router.put("/:id/", checkRoutineOwnership, (req, res) => {
+router.put("/:id/", middleware.checkRoutineOwnership, (req, res) => {
     // find and update the correct routine
     Routine.findByIdAndUpdate(req.params.id, req.body.routine, (err, updatedRoutine) => {
         if(err){
@@ -81,7 +81,7 @@ router.put("/:id/", checkRoutineOwnership, (req, res) => {
 });
 
 // DESTROY ROUTINE ROUTE
-router.delete("/:id", checkRoutineOwnership, isLoggedIn, (req, res) => {
+router.delete("/:id", middleware.checkRoutineOwnership, (req, res) => {
     Routine.findByIdAndRemove(req.params.id, (err) => {
         if(err){
             res.redirect("/routines");
@@ -90,32 +90,5 @@ router.delete("/:id", checkRoutineOwnership, isLoggedIn, (req, res) => {
         }
     })
 });
-
-//middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/login');
-}
-
-function checkRoutineOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        Routine.findById(req.params.id, (err, foundRoutine) => {
-            if(err){
-                res.redirect("back");
-            } else {
-                // does user own the routine
-                if(foundRoutine.poster.id.equals(req.user._id)){
-                    next();
-                } else {
-                    res.redirect("back");
-                }
-            }
-        });
-    } else {
-        res.redirect("back");
-    }
-}
 
 module.exports = router;

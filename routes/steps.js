@@ -1,12 +1,13 @@
 const { application } = require("express");
 const express = require("express");
 const router = express.Router({mergeParams: true});
+const middleware = require("../middleware");
 
 const Routine = require("../models/routine"),
       step    = require("../models/step");
 
 //Steps new
-router.get("/new", isLoggedIn, (req, res) => {
+router.get("/new", middleware.isLoggedIn, (req, res) => {
     // find routine by id
     Routine.findById(req.params.id, (err, routine) => {
         if(err){
@@ -18,7 +19,7 @@ router.get("/new", isLoggedIn, (req, res) => {
 });
 
 //Steps create
-router.post("/", isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, (req, res) => {
     // lookup routine using ID
     Routine.findById(req.params.id, (err, routine) => {
         if(err){
@@ -47,7 +48,7 @@ router.post("/", isLoggedIn, (req, res) => {
 });
 
 // edit a step
-router.get("/:step_id/edit", checkStepOwnership, (req, res) => {
+router.get("/:step_id/edit", middleware.checkStepOwnership, (req, res) => {
     step.findById(req.params.step_id, (err, foundStep) => {
         if(err){
             res.redirect("back");
@@ -58,7 +59,7 @@ router.get("/:step_id/edit", checkStepOwnership, (req, res) => {
 });
 
 // update a step
-router.put("/:step_id", checkStepOwnership, (req, res) => {
+router.put("/:step_id", middleware.checkStepOwnership, (req, res) => {
     step.findByIdAndUpdate(req.params.step_id, req.body.step, (err, updatedStep) => {
         if(err){
             res.redirect("back");
@@ -69,7 +70,7 @@ router.put("/:step_id", checkStepOwnership, (req, res) => {
 });
 
 // delete a step
-router.delete("/:step_id", checkStepOwnership, (req, res) => {
+router.delete("/:step_id", middleware.checkStepOwnership, (req, res) => {
     step.findByIdAndRemove(req.params.step_id, (err) => {
         if(err){
             res.redirect("back");
@@ -78,36 +79,5 @@ router.delete("/:step_id", checkStepOwnership, (req, res) => {
         }
     });
 });
-
-
-// Middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect('/login');
-}
-
-function checkStepOwnership(req, res, next){
-    if(req.isAuthenticated()){
-        step.findById(req.params.step_id, (err, foundStep) => {
-            console.log("=======================");
-            console.log(req.user);
-            console.log("=======================");
-            if(err){
-                res.redirect("back");
-            } else {
-                // does user own the step
-                if(foundStep.poster.id.equals(req.user._id)){
-                    next();
-                } else {
-                    res.redirect("back");
-                }
-            }
-        });
-    } else {
-        res.redirect("back");
-    }
-}
 
 module.exports = router;
