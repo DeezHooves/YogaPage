@@ -26,11 +26,6 @@ body {
     /* height: 100%; */
 }
 
-/* #each-routine { 
-    display:flex;
-    flex-wrap: wrap;
-} */
-
 .navbar {
     background-color: #30363d;
 }
@@ -50,4 +45,8 @@ h4 {
 
 .navbar-default {
     color: #d9cfc9;
+}
+
+#delete-form {
+    display: inline;
 }

@@ -11,6 +11,7 @@
                     <h4 class="pull-right"><%= routine.author %></h4>
                     <h4><%= routine.name %></h4>
                 </div>
+                <% console.log(currentUser); %>
                 <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %> 
                     <a class="btn btn-warning pull-right" href="/routines/<%= routine._id %>/edit">Edit Titlecard</a>
                     <form action="/routines/<%= routine._id %>?_method=DELETE" method="POST">
@@ -41,11 +42,13 @@
                                href="/routines/<%= routine.id %>/steps/<%= step._id %>/edit">
                                edit
                             </a>                           
+                            <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %>
+                                <form id="delete-form" action="/routines/<%= routine.id %>/steps/<%= step._id %>?_method=DELETE" method="POST">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                </form>                      
+                            <% } %>
                         </div>
                     </div>
-                    <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %>  
-                        <a class="btn btn-danger pull-right" href="/routines/<%= routine._id %>/steps/delete">Delete This Step</a>
-                    <% } %>
                 </div>              
                 <hr>
             <% }); %>

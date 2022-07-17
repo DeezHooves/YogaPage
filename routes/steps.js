@@ -67,10 +67,14 @@ router.put("/:step_id", (req, res) => {
 });
 
 // delete a step
-router.get("/delete", isLoggedIn, (req, res) => {
-    console.log("Delete stuff");
-
-    // db.yoga.updateOne({},{"$unset":{"steps.*step id*"}}) //mongosh code to remove a comment
+router.delete("/:step_id", isLoggedIn, (req, res) => {
+    step.findByIdAndRemove(req.params.step_id, (err) => {
+        if(err){
+            res.redirect("back");
+        } else {
+            res.redirect("/routines/" + req.params.id);
+        }
+    });
 });
 
 
