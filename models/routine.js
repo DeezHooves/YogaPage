@@ -9,7 +9,7 @@ let routineSchema = new mongoose.Schema({
     style: String,
     level: String,
     length: String,
-    postAuthor: {
+    poster: {
         id:{
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"

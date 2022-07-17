@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 // CREATE - add new routine to DB
 router.post("/", isLoggedIn, (req, res) => {
     // get data from form and add to routines array
-let postAuthor = {
+let poster = {
         id: req.user._id,
         username: req.user.username
     },
@@ -29,9 +29,9 @@ let postAuthor = {
     style = req.body.style,
     level = req.body.level,
     length = req.body.length,
-    newRoutine = {postAuthor:postAuthor, name: name, image: image, author:author, style:style, level:level, length:length};
+    newRoutine = {poster:poster, name: name, image: image, author:author, style:style, level:level, length:length};
     console.log(req.user);
-    console.log(postAuthor);
+    console.log(poster);
     console.log(newRoutine);
     // Create a new routine and save to DB
     Routine.create(newRoutine, (err, newlyCreated) =>{
@@ -71,7 +71,7 @@ router.get("/:id/edit", checkRoutineOwnership, (req, res) => {
 });
 
 // UPDATE ROUTINE ROUTE
-router.put("/:id/", (req, res) => {
+router.put("/:id/", checkRoutineOwnership, (req, res) => {
     // find and update the correct routine
     Routine.findByIdAndUpdate(req.params.id, req.body.routine, (err, updatedRoutine) => {
         if(err){
@@ -84,7 +84,7 @@ router.put("/:id/", (req, res) => {
 });
 
 // DESTROY ROUTINE ROUTE
-router.delete("/:id", isLoggedIn, (req, res) => {
+router.delete("/:id", checkRoutineOwnership, isLoggedIn, (req, res) => {
     Routine.findByIdAndRemove(req.params.id, (err) => {
         if(err){
             res.redirect("/routines");
@@ -109,7 +109,7 @@ function checkRoutineOwnership(req, res, next){
                 res.redirect("back");
             } else {
                 // does user own the routine
-                if(foundRoutine.postAuthor.id.equals(req.user._id)){
+                if(foundRoutine.poster.id.equals(req.user._id)){
                     next();
                 } else {
                     res.redirect("back");
