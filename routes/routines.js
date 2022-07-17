@@ -30,9 +30,6 @@ let poster = {
     level = req.body.level,
     length = req.body.length,
     newRoutine = {poster:poster, name: name, image: image, author:author, style:style, level:level, length:length};
-    console.log(req.user);
-    console.log(poster);
-    console.log(newRoutine);
     // Create a new routine and save to DB
     Routine.create(newRoutine, (err, newlyCreated) =>{
         if(err){

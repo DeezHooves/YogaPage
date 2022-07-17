@@ -30,13 +30,15 @@ router.post("/", isLoggedIn, (req, res) => {
                 if(err){
                     console.log(err);
                 } else {
+                    // add username and id to step
+                    step.poster.id = req.user._id;
+                    step.poster.username = req.user.username;
                     // save step
                     step.save();
                     // connect new step to routine
                     routine.steps.push(step);
                     routine.save();
                     // redirect routine show page
-                    console.log(step);
                     res.redirect("/routines/" + routine._id);
                 }
             });
@@ -45,7 +47,7 @@ router.post("/", isLoggedIn, (req, res) => {
 });
 
 // edit a step
-router.get("/:step_id/edit", (req, res) => {
+router.get("/:step_id/edit", checkStepOwnership, (req, res) => {
     step.findById(req.params.step_id, (err, foundStep) => {
         if(err){
             res.redirect("back");
@@ -56,7 +58,7 @@ router.get("/:step_id/edit", (req, res) => {
 });
 
 // update a step
-router.put("/:step_id", (req, res) => {
+router.put("/:step_id", checkStepOwnership, (req, res) => {
     step.findByIdAndUpdate(req.params.step_id, req.body.step, (err, updatedStep) => {
         if(err){
             res.redirect("back");
@@ -67,7 +69,7 @@ router.put("/:step_id", (req, res) => {
 });
 
 // delete a step
-router.delete("/:step_id", isLoggedIn, (req, res) => {
+router.delete("/:step_id", checkStepOwnership, (req, res) => {
     step.findByIdAndRemove(req.params.step_id, (err) => {
         if(err){
             res.redirect("back");
@@ -84,6 +86,28 @@ function isLoggedIn(req, res, next){
         return next();
     }
     res.redirect('/login');
+}
+
+function checkStepOwnership(req, res, next){
+    if(req.isAuthenticated()){
+        step.findById(req.params.step_id, (err, foundStep) => {
+            console.log("=======================");
+            console.log(req.user);
+            console.log("=======================");
+            if(err){
+                res.redirect("back");
+            } else {
+                // does user own the step
+                if(foundStep.poster.id.equals(req.user._id)){
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
 }
 
 module.exports = router;
