@@ -45,12 +45,12 @@ router.post("/login", passport.authenticate("local",
 // logout route
 router.get("/logout", (req, res) => {
     req.logout((err) => {
-        if(err) {
-            console.log(err)
-        } else {
-            res.redirect("back");
+        if(err){
+            console.log(err);
         }
     });
+    req.flash("success", "Logged you out!");
+    res.redirect("back");
 });
 
 module.exports = router;

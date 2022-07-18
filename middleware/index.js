@@ -1,15 +1,7 @@
 let Routine = require("../models/routine"),
     Step = require("../models/step"),
     middlewareObj = {};
-
-middlewareObj.isLoggedIn = (req, res, next) => {
-    if(req.isAuthenticated()){
-        return next();
-    }
-    req.flash("error", "Please Login First");
-    res.redirect('/login');
-}
-
+    
 middlewareObj.checkRoutineOwnership = (req, res, next) => {
     if(req.isAuthenticated()){
         Routine.findById(req.params.id, (err, foundRoutine) => {
@@ -46,6 +38,14 @@ middlewareObj.checkStepOwnership = (req, res, next) => {
     } else {
         res.redirect("back");
     }
+}
+
+middlewareObj.isLoggedIn = (req, res, next) => {
+    if(req.isAuthenticated()){
+        return next();
+    }
+    req.flash("error", "Please Login First");
+    res.redirect('/login');
 }
 
 module.exports = middlewareObj;
