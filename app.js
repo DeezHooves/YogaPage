@@ -5,9 +5,12 @@ const express       = require("express"),
       mongoose      = require('mongoose'),
       passport      = require('passport'),
       bodyParser    = require("body-parser"),
+      flash         = require("connect-flash"),
+      cookieParser  = require("cookie-parser"),
       step          = require("./models/step"),
       User          = require("./models/user"),
       LocalStrategy = require("passport-local"),
+      session       = require("express-session"),
       methodOverride =require("method-override"),
       Routine       = require("./models/routine"),
       ObjectID      = require('mongodb').ObjectID;
@@ -29,16 +32,19 @@ app.use(methodOverride("_method"));
 // seedDB(); // seed the database
 
 // PASSPORT CONFIGURATION
-app.use(require("express-session")({
+app.use(cookieParser('secret'));
+app.use(session({
+    cookie: { maxAge: 60000 },
     secret: "2s never lose",
     resave: false,
     saveUninitialized: false
-}));
+    }));
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+app.use(flash());
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;

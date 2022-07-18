@@ -6,6 +6,7 @@ middlewareObj.isLoggedIn = (req, res, next) => {
     if(req.isAuthenticated()){
         return next();
     }
+    req.flash("error", "Please Login First");
     res.redirect('/login');
 }
 
@@ -31,9 +32,6 @@ middlewareObj.checkRoutineOwnership = (req, res, next) => {
 middlewareObj.checkStepOwnership = (req, res, next) => {
     if(req.isAuthenticated()){
         Step.findById(req.params.step_id, (err, foundStep) => {
-            console.log("=======================");
-            console.log(req.user);
-            console.log("=======================");
             if(err){
                 res.redirect("back");
             } else {

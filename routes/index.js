@@ -4,11 +4,10 @@ const router = express.Router();
 const passport = require("passport"),
       User     = require("../models/user");
 
+// show landing form
 router.get("/", (req, res) =>{
     res.render("landing");
 });
-
-
 
 // show register form
 router.get("/register", (req, res) => {
@@ -31,7 +30,7 @@ router.post("/register", (req, res) => {
 
 // show login form
 router.get("/login", (req, res) => {
-    res.render("login");
+    res.render("login", {message: req.flash("error")});
 });
 
 // handling login logic
@@ -49,7 +48,7 @@ router.get("/logout", (req, res) => {
         if(err) {
             console.log(err)
         } else {
-            res.redirect("/routines");
+            res.redirect("back");
         }
     });
 });
