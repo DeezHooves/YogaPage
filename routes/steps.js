@@ -23,6 +23,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
     // lookup routine using ID
     Routine.findById(req.params.id, (err, routine) => {
         if(err){
+            req.flash("error", "Something went wrong");
             console.log(err);
             res.redirect("/routines");
         } else {
@@ -40,6 +41,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
                     routine.steps.push(step);
                     routine.save();
                     // redirect routine show page
+                    req.flash("success", "Successfully added a new step!")
                     res.redirect("/routines/" + routine._id);
                 }
             });
@@ -75,6 +77,7 @@ router.delete("/:step_id", middleware.checkStepOwnership, (req, res) => {
         if(err){
             res.redirect("back");
         } else {
+            req.flash("success", "Step deleted!");
             res.redirect("/routines/" + req.params.id);
         }
     });

@@ -35,6 +35,7 @@ let poster = {
         if(err){
             console.log(err);
         } else {
+            req.flash("success", "Added your new routine!");
             // redirect back to routines page.
             res.redirect("/routines");
         }
@@ -74,6 +75,7 @@ router.put("/:id/", middleware.checkRoutineOwnership, (req, res) => {
         if(err){
             res.redirect("/routines");
         } else {
+            req.flash("success", "Updated your routine");
             // redirect somewhere(show page)
             res.redirect("/routines/" + req.params.id);
         }
@@ -86,6 +88,7 @@ router.delete("/:id", middleware.checkRoutineOwnership, (req, res) => {
         if(err){
             res.redirect("/routines");
         } else {
+            req.flash("success", "DESTROYED your routine");
             res.redirect("/routines");
         }
     })

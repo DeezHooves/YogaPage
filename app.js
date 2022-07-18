@@ -34,10 +34,10 @@ app.use(methodOverride("_method"));
 // PASSPORT CONFIGURATION
 app.use(cookieParser('secret'));
 app.use(session({
-    cookie: { maxAge: 60000 },
     secret: "2s never lose",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: { maxAge: 60000 }
     }));
 app.use(passport.initialize());
 app.use(passport.session());

@@ -19,10 +19,11 @@ router.post("/register", (req, res) => {
     let newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, (err, user) => {
         if(err){
-            console.log(err);
-            return res.render("register");
+            req.flash('error', err.message);
+            return res.redirect("back");
         }
         passport.authenticate("local")(req, res, () => {
+            req.flash("success", "Welcome! Hope you find this helpful " + user.username);
             res.redirect("/routines");
         });
     });
@@ -39,7 +40,6 @@ router.post("/login", passport.authenticate("local",
         successRedirect: "/routines",
         failureRedirect: "/login"
     }), (req, res) => {
-    
 });
 
 // logout route
@@ -47,10 +47,11 @@ router.get("/logout", (req, res) => {
     req.logout((err) => {
         if(err){
             console.log(err);
+        } else {
+            req.flash("success", "Logged you out!");
+            res.redirect("back");
         }
     });
-    req.flash("success", "Logged you out!");
-    res.redirect("back");
 });
 
 module.exports = router;
