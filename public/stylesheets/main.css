@@ -48,6 +48,12 @@ body {
     object-fit: cover;
 }
 
+.form-body {
+    display: flex;
+    align-items: center!important;
+    padding-bottom: 40px;
+    height: 100%;
+}
 .form-form {
     width: 100%;
     max-width: 330px;
@@ -55,12 +61,12 @@ body {
     margin: auto;
 }
 
-.form-body {
-    display: flex;
-    align-items: center!important;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    height: 100%;
+.form-form input {
+    margin: 20px auto;
+}
+
+.form-lead {
+    text-align: center;
 }
 
 .spacer {
@@ -68,4 +74,15 @@ body {
     margin: 50px;
     height: 200px;
     width: 50px;
+}
+
+.routine-spacer {
+    display:block;
+    margin: 50px;
+    height: 80px;
+    width: 50px;
+}
+
+.routine-meta {
+    display: inline;
 }
