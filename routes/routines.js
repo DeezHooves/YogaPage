@@ -29,8 +29,7 @@ let poster = {
     style = req.body.style,
     level = req.body.level,
     length = req.body.length,
-    accessories = req.body.accessories.possibleValues
-    console.log(req.body);
+    accessories = req.body.accessories;
     newRoutine = {poster:poster, name: name, image: image, author:author, style:style, level:level, length:length, accessories:accessories};
     // Create a new routine and save to DB
     Routine.create(newRoutine, (err, newlyCreated) =>{
@@ -97,3 +96,6 @@ router.delete("/:id", middleware.checkRoutineOwnership, (req, res) => {
 });
 
 module.exports = router;
+
+
+//                 <!-- <%- document.getElementById("accessories").populate(routine.accessories); %> -->

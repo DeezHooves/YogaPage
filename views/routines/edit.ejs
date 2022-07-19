@@ -26,11 +26,17 @@
             <div class="form-group">
                 <input class="form-control" type="text" name="routine[length]" placeholder="<%= routine.length %>">
             </div>
+            <select class="custom-select" id="accessories" name="accessories[accessories]" required>
+                <option class="form-control" name="accessory" value="None" <%=routine.accessories==='None' ? 'selected' : '' %>>None</option>
+                <option class="form-control" name="accessory" value="Belt" <%=routine.accessories==='Belt' ? 'selected' : '' %>>Belt</option>
+                <option class="form-control" name="accessory" value="Strap" <%=routine.accessories==='Strap' ? 'selected' : '' %>>Strap</option>
+                <option class="form-control" name="accessory" value="Both" <%=routine.accessories==='Both' ? 'selected' : '' %>>Both</option>
+            </select>
             <div class="form-group">
                 <button class="btn btn-lg btn-primary btn-block">Submit!</button>
             </div>
         </form>
-        <a href="/routines/">Go back</a>
+        <a href="/routines/<%= routine._id %>">Go back</a>
     </div>
 </div>
 
