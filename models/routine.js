@@ -8,7 +8,11 @@ let routineSchema = new mongoose.Schema({
     author: String,
     style: String,
     level: String,
-    length: String,
+    length: Number,
+    accessories: {
+        type: String,
+        possibleValues: ["belt", "strap", "both", "none"]
+    },
     poster: {
         id:{
             type: mongoose.Schema.Types.ObjectId,

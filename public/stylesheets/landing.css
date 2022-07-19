@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(35, 0, 92, 0.329);
+    background-color: rgba(7, 0, 19, 0.329);
 }
 
 #landing-header {
@@ -40,23 +40,23 @@ body {
 }
 
 .slideshow li:nth-child(1) { 
-    background-image: url(https://i.ibb.co/54DBDpR/Cleansing-Eagle-Flow.jpg); 
+  background-image: url(https://i.ibb.co/NjGSscw/Post-Gym-Upper-Body-Recovery.jpg);
 }
-  .slideshow li:nth-child(2) { 
-    background-image: url(https://i.ibb.co/RzYsZVn/Deep-Self-Care.jpg);
-    animation-delay: 10s; 
+.slideshow li:nth-child(2) { 
+  background-image: url(https://i.ibb.co/RzYsZVn/Deep-Self-Care.jpg);
+  animation-delay: 10s; 
 }
-  .slideshow li:nth-child(3) { 
-    background-image: url(https://i.ibb.co/NjGSscw/Post-Gym-Upper-Body-Recovery.jpg);
-    animation-delay: 20s; 
+.slideshow li:nth-child(3) { 
+  background-image: url(https://i.ibb.co/X5vHbMN/Quick-Mood-Reset.jpg);
+  animation-delay: 20s; 
 }
-  .slideshow li:nth-child(4) { 
-    background-image: url(https://i.ibb.co/X5vHbMN/Quick-Mood-Reset.jpg);
-    animation-delay: 30s; 
+.slideshow li:nth-child(4) { 
+  background-image: url(https://i.ibb.co/NS3xQK8/Bendy-Upper-Body.jpg);
+  animation-delay: 30s; 
 }
-  .slideshow li:nth-child(5) { 
-    background-image: url(https://i.ibb.co/NS3xQK8/Bendy-Upper-Body.jpg);
-    animation-delay: 40s; 
+.slideshow li:nth-child(5) {
+  background-image: url(https://i.ibb.co/54DBDpR/Cleansing-Eagle-Flow.jpg);
+  animation-delay: 40s; 
 }
 
 @keyframes imageAnimation { 

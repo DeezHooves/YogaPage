@@ -11,5 +11,7 @@ Place where I have Yoga routines
     migrate to bootstrap 4
     clean up css sheet
     add more metadata to routines
+        does it require a strap, or block, or both?
+        what areas does it work?
     flash message when you login
         

@@ -29,7 +29,9 @@ let poster = {
     style = req.body.style,
     level = req.body.level,
     length = req.body.length,
-    newRoutine = {poster:poster, name: name, image: image, author:author, style:style, level:level, length:length};
+    accessories = req.body.accessories.possibleValues
+    console.log(req.body);
+    newRoutine = {poster:poster, name: name, image: image, author:author, style:style, level:level, length:length, accessories:accessories};
     // Create a new routine and save to DB
     Routine.create(newRoutine, (err, newlyCreated) =>{
         if(err){
