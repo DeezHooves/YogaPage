@@ -1,37 +1,47 @@
 <%- include('../partials/header'); %>
 
-<div class="container">
-   <header class="jumbotron">
-      <div class="container">
-         <h1>Felix's Collection of Yoga Routines</h1>
-         <p>I put these together cause I don't want to have to watch a video, enjoy!</p>
-         <% if(currentUser){ %>
-            <p>
-               <a class="btn btn-primary btn-lg" href="/routines/new">Add a new routine!</a>
-            </p>
-         <% } %>
-      </div>
-   </header>
-   
-   <div class="row text-center" id="each-routine">
-      <% routines.forEach((routine) => { %>
-         <div class="col-md-3 col-sm-6">
-            <div class="thumbnail">
-               <img src="<%= routine.image %>" class="img-fluid">
-               <div class="caption">
-                  <h6 class="pull-left"><%= routine.author %></h6>
-                  <hr>
-                  <h4 class="pull-left"><strong><%= routine.name %></strong></h4>
+<section class="jumbotron text-center">
+   <div class="container">
+      <h1>Felix's Collection of Yoga Routines</h1>
+      <p class="lead text-muted">I put these together cause I don't want to have to watch a video, enjoy!</p>
+      <% if(currentUser){ %>
+         <p>
+            <a href="routines/new" class="btn btn-primary my-2">Add a new routine!</a>
+         </p>
+      <% } %>
+   </div>
+</section>
+
+<div class="row mb-2">
+   <% routines.forEach((routine) => { %>
+      <div class="col-md-6">
+         <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+               <strong class="d-inline-block mb-2 text-primary"><%= routine.author %></strong>
+               <h3 class="mb-0"><%= routine.name %></h3>
+               <div class="mb-1 text-muted">
+                  <span><%- routine.style %></span> | 
+                  <span>Difficulty: <%- routine.level %></span> | 
+                  <span><%- routine.length %> minutes</span>
                </div>
-               <div class="row">
-                  <p>
-                     <a href="/routines/<%= routine._id %>" class="btn btn-primary">More Info</a>
-                  </p>
+               <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+               <div class="row justify-content-around">
+                  <a href="/routines/<%= routine._id %>" class="stretched-link">Continue reading</a>
+                  <div class="btn-group justify-content-end">
+                     <div class="col-xs-2">
+                        <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %>
+                           <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        <% } %>
+                     </div>
+                  </div>
                </div>
             </div>
+            <div class="col-auto d-none d-lg-block">
+               <img class="bd-placeholder-img" src="<%= routine.image %>">
+            </div>
          </div>
-      <% }); %>
-   </div>
+      </div>
+   <% }); %>
 </div>
 
 <%- include('../partials/footer'); %>
