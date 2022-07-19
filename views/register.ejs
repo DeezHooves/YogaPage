@@ -1,11 +1,16 @@
 <%- include('partials/header'); %>
 
-<h1> Sign up </h1>
+<div class="spacer"></div>
 
-<form action="/register" method="POST">
-    <input type="text" name="username" placeholder="username">
-    <input type="password" name="password" placeholder="password">
-    <button>Sign Up</button>
-</form>
+<div class="form-body">        
+    <div class="form-form" class="container text-center">            
+        <form class="form-signin" action="/register" method="POST">                        
+            <h1 class="h3 mb-3 font-weight-normal">Sign up for an account</h1>
+            <input type="text" name="username" class="form-control" placeholder="username" required autofocus>
+            <input type="password" name="password" class="form-control" placeholder="password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>
 
 <%- include('partials/footer'); %>
