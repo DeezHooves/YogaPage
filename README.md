@@ -15,3 +15,5 @@ Place where I have Yoga routines
         what areas does it work?
     flash message when you login
         
+7/21/22
+    clean up css sheet
