@@ -35,7 +35,7 @@
                   <div class="btn-group">
                      <div class="col-xs-2">
                         <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %>
-                           <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        <a class="btn btn-sm btn-outline-secondary" href="/routines/<%= routine.id %>">Edit</a> 
                         <% } %>
                      </div>
                   </div>

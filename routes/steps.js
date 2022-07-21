@@ -4,7 +4,7 @@ const router = express.Router({mergeParams: true});
 const middleware = require("../middleware");
 
 const Routine = require("../models/routine"),
-      step    = require("../models/step");
+      Step    = require("../models/step");
 
 //Steps new
 router.get("/new", middleware.isLoggedIn, (req, res) => {
@@ -28,7 +28,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
             res.redirect("/routines");
         } else {
             // create new step
-            step.create(req.body.step, (err, step) => {
+            Step.create(req.body.step, (err, step) => {
                 if(err){
                     console.log(err);
                 } else {
@@ -51,7 +51,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
 
 // edit a step
 router.get("/:step_id/edit", middleware.checkStepOwnership, (req, res) => {
-    step.findById(req.params.step_id, (err, foundStep) => {
+    Step.findById(req.params.step_id, (err, foundStep) => {
         if(err){
             res.redirect("back");
         } else {
@@ -62,7 +62,7 @@ router.get("/:step_id/edit", middleware.checkStepOwnership, (req, res) => {
 
 // update a step
 router.put("/:step_id", middleware.checkStepOwnership, (req, res) => {
-    step.findByIdAndUpdate(req.params.step_id, req.body.step, (err, updatedStep) => {
+    Step.findByIdAndUpdate(req.params.step_id, req.body.step, (err, updatedStep) => {
         if(err){
             res.redirect("back");
         } else {
@@ -73,7 +73,7 @@ router.put("/:step_id", middleware.checkStepOwnership, (req, res) => {
 
 // delete a step
 router.delete("/:step_id", middleware.checkStepOwnership, (req, res) => {
-    step.findByIdAndRemove(req.params.step_id, (err) => {
+    Step.findByIdAndRemove(req.params.step_id, (err) => {
         if(err){
             res.redirect("back");
         } else {

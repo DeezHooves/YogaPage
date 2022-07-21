@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 // CREATE - add new routine to DB
 router.post("/", middleware.isLoggedIn, (req, res) => {
     // get data from form and add to routines array
-let poster = {
+    let poster = {
         id: req.user._id,
         username: req.user.username
     },
@@ -72,10 +72,16 @@ router.get("/:id/edit", middleware.checkRoutineOwnership, (req, res) => {
 // UPDATE ROUTINE ROUTE
 router.put("/:id/", middleware.checkRoutineOwnership, (req, res) => {
     // find and update the correct routine
+    console.log("===================");
+    console.log(req.body);
+    console.log("===================");
     Routine.findByIdAndUpdate(req.params.id, req.body.routine, (err, updatedRoutine) => {
         if(err){
             res.redirect("/routines");
         } else {
+            console.log("==================");
+            console.log(updatedRoutine);
+            console.log("==================");
             req.flash("success", "Updated your routine");
             // redirect somewhere(show page)
             res.redirect("/routines/" + req.params.id);

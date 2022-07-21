@@ -11,7 +11,7 @@ let routineSchema = new mongoose.Schema({
     length: Number,
     accessories: {
         type: String,
-        possibleValues: ["belt", "strap", "both", "none"]
+        possibleValues: ["none", "belt", "strap", "both"]
     },
     poster: {
         id:{

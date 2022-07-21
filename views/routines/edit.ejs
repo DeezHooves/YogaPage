@@ -18,15 +18,15 @@
                 <input class="form-control" type="text" name="routine[author]" value="<%= routine.author %>">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="routine[style]" placeholder="<%= routine.style %>">
+                <input class="form-control" type="text" name="routine[style]" value="<%= routine.style %>">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="routine[level]" placeholder="<%= routine.level %>">
+                <input class="form-control" type="text" name="routine[level]" value="<%= routine.level %>">
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="routine[length]" placeholder="<%= routine.length %>">
+                <input class="form-control" type="text" name="routine[length]" value="<%= routine.length %>">
             </div>
-            <select class="custom-select" id="accessories" name="accessories[accessories]" required>
+            <select class="custom-select form-group" id="accessories" name="routine[accessories]" required>
                 <option class="form-control" name="accessory" value="None" <%=routine.accessories==='None' ? 'selected' : '' %>>None</option>
                 <option class="form-control" name="accessory" value="Belt" <%=routine.accessories==='Belt' ? 'selected' : '' %>>Belt</option>
                 <option class="form-control" name="accessory" value="Strap" <%=routine.accessories==='Strap' ? 'selected' : '' %>>Strap</option>

@@ -15,7 +15,7 @@
                 <p>Do I need a belt or block? : <strong><%= routine.accessories %></strong></p>
             </ul>
 
-            <div>
+            <div class="d-flex align-content-end">
                 <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %> 
                     <a class="btn btn-warning" href="/routines/<%= routine._id %>/edit">Edit Titlecard</a>
                     <form action="/routines/<%= routine._id %>?_method=DELETE" method="POST">
@@ -27,7 +27,7 @@
     </div>
 
     <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %> 
-        <a class="btn btn-success" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
+        <a class="btn btn-success mb-3" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
     <% } %>
     <% let count = 1; %>
     <% routine.steps.forEach((step) => { %>
@@ -35,10 +35,10 @@
             <div class="col-md-8 blog-main">
                 <div class="row">
                     <div class="blog-post col-6 p-0 border-right">
-                        <img src="<%= step.image %>" class="stepImage">
+                        <img src="<%= step.image1 %>" class="stepImage1">
                     </div>
                     <div class="blog-post col-6 p-0">
-                        <img src="<%= step.image %>" class="stepImage">
+                        <img src="<%= step.image2 %>" class="stepImage2">
                     </div>
                 </div> 
             </div>
@@ -48,13 +48,15 @@
                     <p><%= step.text %></p> 
                 </div>
                 <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %>
-                    <a class="btn btn-sm btn-warning"
-                        href="/routines/<%= routine.id %>/steps/<%= step._id %>/edit">
-                        edit step
-                    </a>                           
-                <form id="delete-form" action="/routines/<%= routine.id %>/steps/<%= step._id %>?_method=DELETE" method="POST">
-                    <input type="submit" class="btn btn-sm btn-danger" value="delete step">
-                </form>
+                    <div class="d-flex align-content-end">
+                        <a class="btn btn-warning btn-sm"
+                            href="/routines/<%= routine.id %>/steps/<%= step._id %>/edit">
+                            edit step
+                        </a>                    
+                        <form id="delete-form" action="/routines/<%= routine.id %>/steps/<%= step._id %>?_method=DELETE" method="POST">
+                            <input type="submit" class="btn btn-danger btn-sm" value="delete step">
+                        </form>
+                    </div>
                 <% } %>
             </aside><!-- /.blog-sidebar -->  
         </div><!-- /.row -->
