@@ -86,3 +86,16 @@ body {
 .routine-meta {
     display: inline;
 }
+
+#routine-image {
+    width: auto;
+    height: auto;
+}
+
+.step-count {
+    display: none;
+}
+
+.container img {
+    width: 100%;
+}
