@@ -22,7 +22,7 @@
             </div>
             <div class="col-s-6 p-4 d-flex flex-column position-static">
                <strong class="mb-2"><%= routine.author %></strong>
-               <h3 class="mb-0"><%= routine.name %></h3>
+               <h3 class="mb-0 mb-3"><%= routine.name %></h3>
                <div class="mb-1 text-muted">
                   <span><%- routine.style %></span> | 
                   <span>Difficulty: <%- routine.level %></span> | 
@@ -31,9 +31,9 @@
                   <span>Accessories preferred: <%- routine.accessories %></span>
                </div>
                <div class="row justify-content-around">
-                  <a href="/routines/<%= routine._id %>" class="stretched-link col align-self-end">Check it out</a>
                   <div class="btn-group">
-                     <div class="col-xs-2">
+                     <a class="btn btn-success rounded col align-self-end mt-2" href="/routines/<%= routine._id %>">Check it out</a>
+                     <div class="col align-self-end">
                         <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %>
                         <a class="btn btn-sm btn-outline-secondary" href="/routines/<%= routine.id %>">Edit</a> 
                         <% } %>
