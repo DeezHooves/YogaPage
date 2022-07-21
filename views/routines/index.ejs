@@ -15,7 +15,7 @@
 <div class="container">
 <div class="row mb-2">
    <% routines.forEach((routine) => { %>
-      <div class="col-md-6">
+      <div class="col-md-6 col-lg-4">
          <div class="col justify-content-between rounded overflow-hidden flex-md-row mx-2 my-3 p-0 shadow-sm h-md-250 position-relative bg-dark">
             <div class="col-s-6">
                <img class="img-fluid" src="<%= routine.image %>">
@@ -23,7 +23,7 @@
             <div class="col-s-6 p-4 d-flex flex-column position-static">
                <strong class="mb-2"><%= routine.author %></strong>
                <h3 class="mb-0 mb-3"><%= routine.name %></h3>
-               <div class="mb-1 text-muted">
+               <div class="mb-1 text-muted mb-2">
                   <span><%- routine.style %></span> | 
                   <span>Difficulty: <%- routine.level %></span> | 
                   <span><%- routine.length %> minutes</span>
