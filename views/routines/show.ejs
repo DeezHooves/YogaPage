@@ -6,8 +6,8 @@
             <img class="img-responsive w-100 border-right p-2 mr-2" src="<%= routine.image %>" id="routine-image">
         </div>
         <div class="col-md-4">
-            <h6 class="pull-right font-italic text-center"><%= routine.author %></h6>
-            <h4 class="pull-right border-bottom text-center p-2"><%= routine.name %></h4>
+            <h6 class= font-italic text-center"><%= routine.author %></h6>
+            <h4 class= border-bottom text-center p-2"><%= routine.name %></h4>
             <ul class="routine-meta">
                 <p>Yoga style: <strong><%= routine.style %></strong></p>
                 <p>Difficulty level: <strong><%= routine.level %></strong></p>
@@ -17,7 +17,7 @@
 
             <div>
                 <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %> 
-                    <a class="btn btn-warning pull-right" href="/routines/<%= routine._id %>/edit">Edit Titlecard</a>
+                    <a class="btn btn-warning" href="/routines/<%= routine._id %>/edit">Edit Titlecard</a>
                     <form action="/routines/<%= routine._id %>?_method=DELETE" method="POST">
                         <button class="btn btn-xs btn-danger pull-left" href="/routines/<%= routine._id %>/*">Delete Entire Routine</button>
                     </form>
@@ -27,7 +27,7 @@
     </div>
 
     <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %> 
-        <a class="btn btn-success pull-right" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
+        <a class="btn btn-success" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
     <% } %>
     <% let count = 1; %>
     <% routine.steps.forEach((step) => { %>
@@ -48,12 +48,12 @@
                     <p><%= step.text %></p> 
                 </div>
                 <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %>
-                    <a class="btn btn-xs btn-warning"
-                    href="/routines/<%= routine.id %>/steps/<%= step._id %>/edit">
-                    edit step
-                </a>                           
+                    <a class="btn btn-sm btn-warning"
+                        href="/routines/<%= routine.id %>/steps/<%= step._id %>/edit">
+                        edit step
+                    </a>                           
                 <form id="delete-form" action="/routines/<%= routine.id %>/steps/<%= step._id %>?_method=DELETE" method="POST">
-                    <input type="submit" class="btn btn-xs btn-danger" value="delete step">
+                    <input type="submit" class="btn btn-sm btn-danger" value="delete step">
                 </form>
                 <% } %>
             </aside><!-- /.blog-sidebar -->  
@@ -61,7 +61,7 @@
         <span class="step-count"><%= count += 1 %></span>
         <% }); %>
         <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %> 
-        <a class="btn btn-success pull-right" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
+        <a class="btn btn-success" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
     <% } %>
 
 <%- include('../partials/footer'); %>
