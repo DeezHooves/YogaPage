@@ -1,6 +1,6 @@
 <%- include('../partials/header'); %>
 
-<section class="jumbotron text-center">
+<section class="jumbotron text-center bg-dark">
    <div class="container">
       <h1>Felix's Collection of Yoga Routines</h1>
       <p class="lead text-muted">I put these together cause I don't want to have to watch a video, enjoy!</p>
@@ -18,7 +18,7 @@
       <div class="col-md-6">
          <div class="col justify-content-between rounded overflow-hidden flex-md-row mx-2 my-3 p-0 shadow-sm h-md-250 position-relative bg-dark">
             <div class="col-s-6">
-               <img class="img-fluid routine-image" src="<%= routine.image %>">
+               <img class="img-fluid" src="<%= routine.image %>">
             </div>
             <div class="col-s-6 p-4 d-flex flex-column position-static">
                <strong class="mb-2"><%= routine.author %></strong>
@@ -28,7 +28,7 @@
                   <span>Difficulty: <%- routine.level %></span> | 
                   <span><%- routine.length %> minutes</span>
                   <br> 
-                  <span>Accessories preferred? <%- routine.accessories %></span>
+                  <span>Accessories preferred: <%- routine.accessories %></span>
                </div>
                <div class="row justify-content-around">
                   <a href="/routines/<%= routine._id %>" class="stretched-link col align-self-end">Check it out</a>

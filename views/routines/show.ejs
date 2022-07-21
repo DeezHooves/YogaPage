@@ -3,7 +3,7 @@
 <div class="container">
     <div class="row jumbotron p-0 p-md-2 text-white rounded bg-dark">
         <div class="col-md-8 px-0">
-            <img class="img-responsive w-100 border-right p-2 mr-2" src="<%= routine.image %>" id="routine-image">
+            <img class="img-responsive w-100 border-right p-2 mr-2" src="<%= routine.image %>">
         </div>
         <div class="col-md-4">
             <h6 class= font-italic text-center"><%= routine.author %></h6>
@@ -60,7 +60,7 @@
                 <% } %>
             </aside><!-- /.blog-sidebar -->  
         </div><!-- /.row -->
-        <span class="step-count"><%= count += 1 %></span>
+        <span class="d-none"><%= count += 1 %></span>
         <% }); %>
         <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %> 
         <a class="btn btn-success" href="/routines/<%= routine._id %>/steps/new">Add a New Step</a>
