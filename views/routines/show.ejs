@@ -3,15 +3,18 @@
 <div class="container">
     <div class="row jumbotron p-0 p-md-2 text-white rounded bg-dark">
         <div class="col-md-8 px-0">
-            <img class="img-responsive" src="<%= routine.image %>" id="routine-image">
+            <img class="img-responsive w-100 border-right p-2 mr-2" src="<%= routine.image %>" id="routine-image">
         </div>
-        <div class="col-md-4 px-0">
-            <h6 class="pull-right font-italic"><%= routine.author %></h4>
-            <h4 class="pull-right border-bottom"><%= routine.name %></h4>
-            <h6><%= routine.style %></h6>
-            <h6><%= routine.level %></h6>
-            <h6><%= routine.length %></h6>
-            <h6><%= routine.accessories %></h6>
+        <div class="col-md-4">
+            <h6 class="pull-right font-italic text-center"><%= routine.author %></h6>
+            <h4 class="pull-right border-bottom text-center p-2"><%= routine.name %></h4>
+            <ul class="routine-meta">
+                <p>Yoga style: <strong><%= routine.style %></strong></p>
+                <p>Difficulty level: <strong><%= routine.level %></strong></p>
+                <p>Routine duration: <strong><%= routine.length %></strong></p>
+                <p>Do I need a belt or block? : <strong><%= routine.accessories %></strong></p>
+            </ul>
+
             <div>
                 <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %> 
                     <a class="btn btn-warning pull-right" href="/routines/<%= routine._id %>/edit">Edit Titlecard</a>
@@ -31,17 +34,17 @@
         <div class="row mb-3 bg-dark rounded">
             <div class="col-md-8 blog-main">
                 <div class="row">
-                    <div class="blog-post col-6">
+                    <div class="blog-post col-6 p-0 border-right">
                         <img src="<%= step.image %>" class="stepImage">
                     </div>
-                    <div class="blog-post col-6">
+                    <div class="blog-post col-6 p-0">
                         <img src="<%= step.image %>" class="stepImage">
                     </div>
                 </div> 
             </div>
             <aside class="col-md-4 blog-sidebar">
-                <div class="p-2">
-                    <p> Step <%= count %></p>
+                <div class="p-1">
+                    <p class="m-1">Step <%= count %></p>
                     <p><%= step.text %></p> 
                 </div>
                 <% if(currentUser && routine.poster.id.equals(currentUser._id)){ %>
