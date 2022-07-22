@@ -20,15 +20,15 @@ const express       = require("express"),
       MongoStore    = require('connect-mongo')(session),
       host          = process.env.HOST,
       port          = process.env.PORT,
-      dbUrl         = process.env.DB_URL;
+      secret        = process.env.SECRET || "2sneverlose",
+      dbUrl         = process.env.DB_URL || "mongodb://localhost:27017/yoga";
 
 // requiring routes
 const indexRoutes   = require("./routes/index"),
       routineRoutes = require("./routes/routines"),
       stepRoutes    = require("./routes/steps");
 
-// connect to database
-// "mongodb://localhost:27017/yoga"
+// connect to database 
 mongoose.connect(dbUrl , 
 {
     useNewUrlParser: true,
@@ -45,7 +45,7 @@ app.use(methodOverride("_method"));
 // PASSPORT CONFIGURATION
 app.use(cookieParser('secret'));
 app.use(session({
-    secret: "2s never lose",
+    secret: secret,
     store: new MongoStore({
         mongooseConnection: mongoose.connection
     }),
