@@ -13,6 +13,7 @@ const express       = require("express"),
       User          = require("./models/user"),
       LocalStrategy = require("passport-local"),
       session       = require("express-session"),
+      MongoStore    = require('connect-mongo')(session),
       methodOverride =require("method-override"),
       Routine       = require("./models/routine"),
       ObjectID      = require('mongodb').ObjectID,
@@ -42,9 +43,12 @@ app.use(methodOverride("_method"));
 app.use(cookieParser('secret'));
 app.use(session({
     secret: "2s never lose",
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection
+    }),
     resave: false,
     saveUninitialized: false,
-    cookie: { maxAge: 60000 }
+    cookie: { maxAge: 180 * 60 * 1000 }
     }));
 app.use(passport.initialize());
 app.use(passport.session());
