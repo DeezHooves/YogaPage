@@ -13,11 +13,14 @@ const express       = require("express"),
       User          = require("./models/user"),
       LocalStrategy = require("passport-local"),
       session       = require("express-session"),
-      MongoStore    = require('connect-mongo')(session),
+      dotenv        = require('dotenv').config(),
       methodOverride =require("method-override"),
       Routine       = require("./models/routine"),
       ObjectID      = require('mongodb').ObjectID,
-      dbUrl         = "mongodb+srv://deezhooves:4okIlniy55LojTpx@yogapage.pg65wvl.mongodb.net/?retryWrites=true&w=majority";
+      MongoStore    = require('connect-mongo')(session),
+      host          = process.env.HOST,
+      port          = process.env.PORT,
+      dbUrl         = process.env.DB_URL;
 
 // requiring routes
 const indexRoutes   = require("./routes/index"),
@@ -72,6 +75,6 @@ app.use("/", indexRoutes);
 app.use("/routines", routineRoutes);
 app.use("/routines/:id/steps", stepRoutes);
 
-app.listen(3001, () => {
-    console.log("The server has started!");
+app.listen(port, () => {
+    console.log(`The server has started! ${host}:${port}`);
 });
