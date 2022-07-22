@@ -75,6 +75,6 @@ app.use("/", indexRoutes);
 app.use("/routines", routineRoutes);
 app.use("/routines/:id/steps", stepRoutes);
 
-app.listen(port, () => {
+app.listen(port || 3001, () => {
     console.log(`The server has started! ${host}:${port}`);
 });
