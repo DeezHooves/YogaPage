@@ -1,3 +1,5 @@
+const { MongoClient, ServerApiVersion } = require('mongodb');
+
 const express       = require("express"),
       app           = express(),
       path          = require('path'),
@@ -13,7 +15,8 @@ const express       = require("express"),
       session       = require("express-session"),
       methodOverride =require("method-override"),
       Routine       = require("./models/routine"),
-      ObjectID      = require('mongodb').ObjectID;
+      ObjectID      = require('mongodb').ObjectID,
+      dbUrl         = "mongodb+srv://deezhooves:4okIlniy55LojTpx@yogapage.pg65wvl.mongodb.net/?retryWrites=true&w=majority";
 
 // requiring routes
 const indexRoutes   = require("./routes/index"),
@@ -21,8 +24,12 @@ const indexRoutes   = require("./routes/index"),
       stepRoutes    = require("./routes/steps");
 
 // connect to database
-mongoose.connect('mongodb://localhost:27017/yoga', 
-{useNewUrlParser: true});
+// "mongodb://localhost:27017/yoga"
+mongoose.connect(dbUrl , 
+{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
