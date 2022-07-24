@@ -8,10 +8,10 @@
 <div class="form-body">        
     <div class="form-form" class="container text-center">            
         <form action="/routines/<%= routine._id %>/steps" method="POST">                        
-            <input class="form-control" type="text" name="step[image1]" placeholder="first image url" required autofocus>
-            <input class="form-control" type="text" name="step[image2]" placeholder="second image url" required autofocus>
-            <input class="form-control" type="text" name="step[text]" placeholder="desription" required>
-            <button class="btn btn-lg btn-primary btn-block form-group" type="submit">Submit!</button>
+            <input class="form-control bg-dark text-white" type="text" name="step[image1]" placeholder="first image url" required autofocus>
+            <input class="form-control bg-dark text-white" type="text" name="step[image2]" placeholder="second image url" required autofocus>
+            <input class="form-control bg-dark text-white" type="text" name="step[text]" placeholder="desription" required>
+            <button class="btn btn-lg btn-secondary btn-block form-group" type="submit">Submit!</button>
         </form>
         <a href="/routines/<%= routine._id %>">Go back</a>
     </div>
