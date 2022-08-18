@@ -1,19 +1,6 @@
 # YogaPage
 Place where I have Yoga routines
 
-7/14/22
-    sign in redirects to /routines
-    change sizing of index page
+I created a web application so I could have text and image versions of yoga routines so they're easier to view in a way, and you don't have to try and keep up with a video.
 
-    change step image to text sizes
-
-7/18/22
-    migrate to bootstrap 4
-    clean up css sheet
-    add more metadata to routines
-        does it require a strap, or block, or both?
-        what areas does it work?
-    flash message when you login
-        
-7/21/22
-    clean up css sheet
+This is made with html, css, bootstrap, js, node, express, and mongodb.
